@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Editor • Emulator Games ID</title>
+
+<link rel="icon" href="assets/image/favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
+<link rel="stylesheet" href="css/editor.css">
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div>
+
+        <h1 id="editorTitle">Game Editor</h1>
+
+        <p>Create or update your emulator library.</p>
+
+    </div>
+
+    <button class="back-btn" id="backBtn">
+
+        <span class="material-symbols-outlined">
+
+            arrow_back
+
+        </span>
+
+        Back
+
+    </button>
+
+</header>
+
+<main class="editor-container">
+
+<section class="editor-section">
+
+<div class="section-header">
+
+<span class="material-symbols-outlined section-icon">
+
+sports_esports
+
+</span>
+
+<div>
+
+<h2>Game Information</h2>
+
+<p>Basic information about the game.</p>
+
+</div>
+
+</div>
+
+<div class="editor-grid">
+
+<div class="input-group full">
+
+<label>
+
+Game Title
+
+<span class="required">*</span>
+
+</label>
+
+<input
+id="fTitle"
+type="text"
+placeholder="God of War - Ghost of Sparta">
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Console
+
+<span class="required">*</span>
+
+</label>
+
+<select id="fConsole">
+
+<option value="">Select Console</option>
+
+<optgroup label="PlayStation">
+  <option>PS1</option>
+  <option>PS2</option>
+  <option>PS3</option>
+  <option>PSP</option>
+  <option>PS Vita</option>
+</optgroup>
+
+<optgroup label="Nintendo">
+  <option>NES</option>
+  <option>SNES</option>
+  <option>Game Boy</option>
+  <option>Game Boy Color</option>
+  <option>Game Boy Advance</option>
+  <option>Nintendo DS</option>
+  <option>Nintendo 3DS</option>
+  <option>Nintendo 64</option>
+  <option>GameCube</option>
+  <option>Wii</option>
+  <option>Wii U</option>
+  <option>Nintendo Switch</option>
+</optgroup>
+
+<optgroup label="SEGA">
+  <option>Master System</option>
+  <option>Game Gear</option>
+  <option>Mega Drive / Genesis</option>
+  <option>Sega Saturn</option>
+  <option>Dreamcast</option>
+</optgroup>
+
+<optgroup label="Arcade">
+  <option>Arcade</option>
+  <option>Neo Geo</option>
+</optgroup>
+
+<optgroup label="Other">
+  <option>PC</option>
+  <option>Android</option>
+  <option>Other</option>
+</optgroup>
+
+</select>
+</div>
+
+<div class="input-group">
+
+<label>
+
+Genre
+
+</label>
+
+<select id="fGenre">
+
+<option value="">Select Genre</option>
+
+<option>Action</option>
+<option>Action RPG</option>
+<option>Action Adventure</option>
+<option>Adventure</option>
+<option>Arcade</option>
+<option>Beat 'em Up</option>
+<option>Beat' em Up</option>
+<option>Board Game</option>
+<option>Building</option>
+<option>Bundle</option>
+<option>Card</option>
+<option>Casino</option>
+<option>Chess</option>
+<option>Combat</option>
+<option>Compilation</option>
+<option>Detective-mystery</option>
+<option>Fantasy</option>
+<option>Fighting</option>
+<option>Flight Simulator</option>
+<option>Hack and Slash</option>
+<option>Historical</option>
+<option>Horror</option>
+<option>indie</option>
+<option>Survival Horror</option>
+<option>JRPG</option>
+<option>RPG</option>
+<option>MMORPG</option>
+<option>MOBA</option>
+<option>Modern</option>
+<option>Music</option>
+<option>Off-road</option>
+<option>Open World</option>
+<option>Platformer</option>
+<option>Puzzle</option>
+<option>Racing</option>
+<option>Rhythm</option>
+<option>Shooter</option>
+<option>First-Person Shooter (FPS)</option>
+<option>Third-Person Shooter (TPS)</option>
+<option>Simulation</option>
+<option>Sports</option>
+<option>Stealth</option>
+<option>Strategy</option>
+<option>Real-Time Strategy (RTS)</option>
+<option>Turn-Based Strategy (TBS)</option>
+<option>Visual Novel</option>
+<option>Open World</option>
+<option>Sandbox</option>
+<option>Sci-Fi</option>
+<option>Fantasy</option>
+<option>Survival</option>
+<option>Party</option>
+<option>Educational</option>
+<option>Music</option>
+<option>Other</option>
+
+</select>
+</div>
+
+<div class="input-group">
+
+<label>Publisher</label>
+
+<input
+id="fPublisher"
+type="text"
+placeholder="Sony Computer Entertainment">
+
+</div>
+
+<div class="input-group">
+
+<label>Developer</label>
+
+<input
+id="fDeveloper"
+type="text"
+placeholder="Ready at Dawn">
+
+</div>
+
+<div class="input-group">
+
+<label>Release Date</label>
+
+<input
+id="fReleaseDate"
+type="text"
+placeholder="November 2, 2010">
+
+</div>
+
+<div class="input-group">
+
+<label>Region</label>
+
+<select id="fRegion">
+
+<option value="">Select Region</option>
+
+<option>USA</option>
+
+<option>Europe</option>
+
+<option>Japan</option>
+
+<option>Asia</option>
+
+<option>Korea</option>
+
+<option>Global</option>
+
+<option>Other</option>
+
+</select>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ==================== MEDIA ==================== -->
+<section class="editor-section">
+
+    <div class="section-header">
+
+        <span class="material-symbols-outlined section-icon">
+            image
+        </span>
+
+        <div>
+            <h2>Media</h2>
+            <p>Cover and screenshots for this game.</p>
+        </div>
+
+    </div>
+
+    <div class="editor-grid">
+
+        <div class="input-group full">
+            <label>Cover URL</label>
+            <input id="fCover" type="url" placeholder="https://example.com/cover.jpg">
+        </div>
+
+        <div class="input-group full">
+            <label>Banner URL <span class="optional">(Optional)</span></label>
+            <input id="fBanner" type="url" placeholder="https://example.com/banner.jpg">
+        </div>
+
+        <div class="input-group full">
+
+            <label>Screenshots</label>
+
+            <div class="screenshot-list" id="screenshotList">
+
+                <div class="screenshot-row">
+
+                    <input
+                        type="url"
+                        class="shot-input"
+                        placeholder="Screenshot 1">
+
+                    <button
+                        class="icon-btn add-btn"
+                        type="button">
+
+                        <span class="material-symbols-outlined">
+                            add
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==================== DOWNLOADS ==================== -->
+
+<section class="editor-section">
+
+    <div class="section-header">
+
+        <span class="material-symbols-outlined section-icon">
+            download
+        </span>
+
+        <div>
+
+            <h2>Downloads</h2>
+
+            <p>Game files and emulator.</p>
+
+        </div>
+
+    </div>
+
+    <div class="editor-grid">
+
+        <div class="input-group full">
+            <label>ROM Link</label>
+            <input id="fLink" type="url" placeholder="https://...">
+        </div>
+
+        <div class="input-group">
+            <label>Texture Pack</label>
+            <input id="fTexturePack" type="url" placeholder="Optional">
+        </div>
+
+        <div class="input-group">
+            <label>Save Data</label>
+            <input id="fSaveData" type="url" placeholder="Optional">
+        </div>
+
+        <div class="input-group">
+            <label>Cheat Database</label>
+            <input id="fCheatDb" type="url" placeholder="Optional">
+        </div>
+
+        <div class="input-group">
+            <label>Patch / Translation</label>
+            <input id="fPatch" type="url" placeholder="Optional">
+        </div>
+
+        <div class="input-group">
+            <label>Recommended Emulator</label>
+            <input id="fEmulator" type="text" placeholder="PPSSPP">
+        </div>
+
+        <div class="input-group">
+            <label>Emulator Download</label>
+            <input id="fEmulatorDownload" type="url" placeholder="https://...">
+        </div>
+
+    </div>
+
+    <div class="dyn-requirements-wrap" id="dynRequirementsWrap" style="display:none;">
+        <p class="dyn-requirements-hint">File wajib buat emulator ini:</p>
+        <div class="editor-grid" id="dynamicRequirements"></div>
+    </div>
+
+</section>
+
+<!-- ==================== EXTRA ==================== -->
+
+<section class="editor-section">
+
+    <div class="section-header">
+
+        <span class="material-symbols-outlined section-icon">
+            star
+        </span>
+
+        <div>
+
+            <h2>Extra</h2>
+
+            <p>Additional information.</p>
+
+        </div>
+
+    </div>
+
+    <div class="editor-grid">
+
+        <div class="input-group">
+            <label>Series</label>
+            <input id="fSeries" type="text" placeholder="Ghost Of Sparta">
+        </div>
+
+        <div class="input-group">
+            <label>Size</label>
+            <input id="fSize" type="text" placeholder="1.2 GB">
+        </div>
+
+        <div class="input-group">
+
+            <label>Status</label>
+
+            <select id="fStatus">
+
+                <option>Playable</option>
+                <option>Testing</option>
+                <option>Broken</option>
+
+            </select>
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Rating</label>
+
+            <select id="fRating">
+
+                <option value="5">★★★★★</option>
+                <option value="4">★★★★☆</option>
+                <option value="3">★★★☆☆</option>
+                <option value="2">★★☆☆☆</option>
+                <option value="1">★☆☆☆☆</option>
+
+            </select>
+
+        </div>
+
+        <div class="input-group full">
+
+            <div class="desc-label-row">
+                <label for="fDesc">Description</label>
+                <div class="desc-tools">
+                    <button type="button" id="loadFormatBtn" class="load-format-btn">📥 Load Format</button>
+                    <button type="button" id="mdInfoBtn" class="md-info-btn" aria-label="Bantuan format Markdown">?</button>
+                </div>
+            </div>
+
+            <textarea
+                id="fDesc"
+                rows="10"
+                placeholder="## FEATURES&#10;- Poin pertama&#10;- Poin kedua&#10;&#10;## CREDITS&#10;**Modder:** Nama"></textarea>
+
+        </div>
+
+    </div>
+
+</section>
+
+<div class="editor-actions">
+
+    <button class="cancel-btn" id="cancelBtn">
+
+        Cancel
+
+    </button>
+
+    <button class="save-btn" id="saveBtn">
+
+        Save Game
+
+    </button>
+
+</div>
+
+</main>
+
+<!-- Popup Info Markdown -->
+<div class="md-overlay" id="mdInfoOverlay">
+  <div class="md-info-card" id="mdInfoCard">
+    <button class="md-info-close" id="mdInfoClose" aria-label="Tutup">&times;</button>
+    <h3>Format Markdown</h3>
+    <div class="md-info-list">
+      <div class="md-info-row"><code># Judul</code><span>Heading besar</span></div>
+      <div class="md-info-row"><code>## Sub</code><span>Heading label (FEATURES, dll)</span></div>
+      <div class="md-info-row"><code>### Kecil</code><span>Heading kecil</span></div>
+      <div class="md-info-row"><code>**Bold**</code><span>Teks tebal</span></div>
+      <div class="md-info-row"><code>*Italic*</code><span>Teks miring</span></div>
+      <div class="md-info-row"><code>`Code`</code><span>Teks kode (mis. nama emulator)</span></div>
+      <div class="md-info-row"><code>~~Strike~~</code><span>Teks dicoret</span></div>
+      <div class="md-info-row"><code>&gt; Quote</code><span>Kutipan</span></div>
+      <div class="md-info-row"><code>- List</code><span>Daftar bullet</span></div>
+      <div class="md-info-row"><code>1. List</code><span>Daftar angka</span></div>
+      <div class="md-info-row"><code>[Teks](url)</code><span>Link</span></div>
+    </div>
+  </div>
+</div>
+
+<script src="js/firebase.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/emulator-config.js"></script>
+<script src="js/editor.js"></script>
+
+</body>
+
+</html>

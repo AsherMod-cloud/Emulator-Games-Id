@@ -1,0 +1,233 @@
+.login-page{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:var(--bg);
+
+    padding:20px;
+
+}
+
+.login-card{
+
+    width:100%;
+
+    max-width:420px;
+
+    background:var(--card);
+
+    border:1px solid var(--line);
+
+    padding:30px;
+
+    border-radius:4px;
+
+}
+
+.login-logo{
+
+    font-family:"Press Start 2P";
+
+    font-size:13px;
+
+    text-align:center;
+
+    margin-bottom:28px;
+
+}
+
+.login-logo span{
+
+    color:var(--red);
+
+}
+
+.login-card h2{
+
+    margin:0;
+
+    font-size:22px;
+
+}
+
+.login-card p{
+
+    color:var(--ink-dim);
+
+    margin-bottom:24px;
+
+}
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    margin-bottom:18px;
+
+}
+
+.form-group label{
+
+    margin-bottom:8px;
+
+    font-size:14px;
+
+}
+
+.form-group input{
+
+    background:var(--bg);
+
+    color:var(--ink);
+
+    border:1px solid var(--line);
+
+    padding:12px;
+
+    font-size:14px;
+
+}
+
+.input-wrap{
+    position:relative;
+    display:flex;
+    align-items:center;
+}
+
+.input-wrap input{
+    flex:1;
+    padding-left:40px;
+}
+
+.input-wrap .input-icon{
+    position:absolute;
+    left:12px;
+    width:16px;
+    height:16px;
+    color:var(--ink-dim);
+    pointer-events:none;
+}
+
+.toggle-pass{
+    position:absolute;
+    right:8px;
+    width:auto;
+    background:transparent;
+    border:none;
+    color:var(--ink-dim);
+    padding:6px;
+    margin:0;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+}
+
+.toggle-pass .eye-icon{
+    width:18px;
+    height:18px;
+}
+
+.remember-row{
+    margin-bottom:20px;
+}
+
+.remember-label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
+    color:var(--ink-dim);
+    cursor:pointer;
+}
+
+.remember-label input{
+    width:16px;
+    height:16px;
+    accent-color:var(--amber);
+    cursor:pointer;
+}
+
+button{
+
+    width:100%;
+
+    padding:13px;
+
+    background:var(--amber);
+
+    color:#1c1b1f;
+
+    border:none;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    margin-top:10px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+}
+
+button:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+}
+
+.spinner-icon{
+    width:16px;
+    height:16px;
+    animation:spin 0.9s linear infinite;
+}
+
+@keyframes spin{
+    from{ transform:rotate(0deg); }
+    to{ transform:rotate(360deg); }
+}
+
+#errorBox{
+
+    margin-top:18px;
+
+    color:var(--red);
+
+    text-align:center;
+
+    min-height:20px;
+
+}
+
+#errorBox:not(:empty){
+    background:rgba(200,57,59,0.12);
+    border:1px solid var(--red);
+    border-radius:2px;
+    padding:10px 14px;
+}
+
+.back-home{
+
+    display:block;
+
+    text-align:center;
+
+    margin-top:24px;
+
+    color:var(--ink-dim);
+
+    text-decoration:none;
+
+}

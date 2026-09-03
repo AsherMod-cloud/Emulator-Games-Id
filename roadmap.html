@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadmap — Emulator Games ID</title>
+<meta name="description" content="Roadmap internal Emulator Games ID.">
+<link rel="icon" href="assets/image/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/roadmap.css">
+</head>
+<body>
+<header class="roadmap-header">
+  <a class="logo" href="index.html" style="text-decoration:none;">EMULATOR<span>.</span>GAMES<span>.</span>ID</a>
+  <div class="header-actions">
+    <a class="back-btn" href="index.html" aria-label="Kembali ke halaman utama">← Home</a>
+    <button class="icon-action" id="logoutBtn" type="button">Logout</button>
+  </div>
+</header>
+
+<main class="roadmap-wrap">
+  <section class="roadmap-intro">
+    <div class="eyebrow">// internal owner notepad</div>
+    <div class="roadmap-heading-row">
+      <div>
+        <h1>PROJECT ROADMAP.</h1>
+        <p>Catatan pengembangan Emulator Games ID.</p>
+      </div>
+      <div class="roadmap-actions" id="roadmapActions">
+        <button class="outline-btn" id="editRoadmapBtn" type="button">✎ Edit</button>
+        <button class="outline-btn muted-action" id="cancelRoadmapBtn" type="button" hidden>Cancel</button>
+        <button class="outline-btn save-action" id="saveRoadmapBtn" type="button" disabled hidden>Save</button>
+      </div>
+    </div>
+    <div class="roadmap-meta" id="roadmapMeta">Memuat roadmap...</div>
+  </section>
+
+  <section class="roadmap-summary" aria-label="Ringkasan roadmap">
+    <div class="summary-item"><span>total</span><strong id="summaryTotal">—</strong></div>
+    <div class="summary-item"><span>done</span><strong class="status-done" id="summaryDone">—</strong></div>
+    <div class="summary-item"><span>partial</span><strong class="status-partial" id="summaryPartial">—</strong></div>
+    <div class="summary-item"><span>planned</span><strong class="status-planned" id="summaryPlanned">—</strong></div>
+    <div class="summary-item"><span>rejected</span><strong class="status-rejected" id="summaryRejected">—</strong></div>
+  </section>
+
+  <section class="roadmap-notepad" id="roadmapNotepad" aria-label="Roadmap project">
+    <div class="roadmap-loading">Memuat roadmap...</div>
+  </section>
+</main>
+
+<div class="roadmap-toast" id="roadmapToast" role="status" aria-live="polite"></div>
+
+<script src="js/firebase.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/roadmap.js"></script>
+</body>
+</html>
