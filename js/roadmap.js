@@ -46,6 +46,8 @@ const DEFAULT_ROADMAP = [
   { id: "catalog-recently-updated", category: "Game Catalog", title: "Recently Updated", status: "planned" },
   { id: "catalog-popular-games", category: "Game Catalog", title: "Popular Games", status: "planned" },
   { id: "catalog-featured-game", category: "Game Catalog", title: "Featured Game", status: "planned" },
+  { id: "catalog-content-warning", category: "Game Catalog", title: "Content warning modal", status: "planned" },
+  { id: "catalog-warning-confirmation", category: "Game Catalog", title: "Warning confirmation flow", status: "planned" },
   { id: "catalog-download-counter", category: "Game Catalog", title: "Download Counter", status: "planned" },
   { id: "catalog-game-rating", category: "Game Catalog", title: "Game Rating", status: "planned" },
   { id: "catalog-size-formatter", category: "Game Catalog", title: "Auto Game Size Formatter", status: "planned" },
@@ -57,6 +59,8 @@ const DEFAULT_ROADMAP = [
   { id: "content-tutorial", category: "Content", title: "Tutorial", status: "planned" },
   { id: "content-request", category: "Content", title: "Request Form", status: "planned" },
   { id: "content-about", category: "Content", title: "About", status: "planned" },
+  { id: "content-restricted-18", category: "Content", title: "Restricted 18+ setting", status: "planned" },
+  { id: "content-hide-adult-tags", category: "Content", title: "Hide 18+ tags / genres", status: "planned" },
   { id: "content-changelog", category: "Content", title: "Changelog", status: "planned" },
 
   // Console
@@ -439,6 +443,34 @@ async function seedRoadmap() {
   return cloneItems(DEFAULT_ROADMAP);
 }
 
+async function addMissingDefaultItems(snapshot) {
+  const existingIds = new Set(snapshot.docs.map(doc => doc.id));
+  const missingItems = DEFAULT_ROADMAP.filter(item => !existingIds.has(item.id));
+
+  if (missingItems.length === 0) {
+    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  }
+
+  const batch = db.batch();
+  missingItems.forEach(item => {
+    batch.set(roadmapRef.doc(item.id), {
+      category: item.category,
+      title: item.title,
+      status: item.status,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+  });
+
+  await batch.commit();
+  showToast(`${missingItems.length} roadmap item baru ditambahkan.`);
+
+  return [
+    ...snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })),
+    ...missingItems
+  ];
+}
+
 async function loadRoadmap() {
   try {
     const snapshot = await roadmapRef.get();
@@ -446,7 +478,7 @@ async function loadRoadmap() {
       roadmapItems = await seedRoadmap();
       showToast("Roadmap awal berhasil dibuat.");
     } else {
-      roadmapItems = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      roadmapItems = await addMissingDefaultItems(snapshot);
       roadmapItems.sort((a, b) => a.id.localeCompare(b.id));
     }
 

@@ -39,3 +39,9 @@
 - Added exponential cooldown growth from 30 seconds up to 10 minutes.
 - Clears the local cooldown after a successful authorized admin login.
 - Handles Firebase `auth/too-many-requests` without replacing Firebase server-side throttling.
+
+## Content safety roadmap
+
+- Added planned roadmap entries for a pre-detail-game content warning modal and confirmation flow.
+- Added planned roadmap entries for a future Restricted 18+ setting and hiding 18+ tags or genres.
+- Added automatic insertion of newly defined default roadmap items into an existing Firestore roadmap without overwriting current items.
